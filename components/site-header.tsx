@@ -6,7 +6,7 @@ import { SITE_DATA } from "@/constants/site";
 import { ReactNode } from "react";
 
 interface SiteHeaderProps {
-  title: string;
+  title?: string;
   actionButtons?: ReactNode;
 }
 
@@ -19,7 +19,7 @@ export function SiteHeader({ title, actionButtons }: SiteHeaderProps) {
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
-        <h1 className="text-base font-medium">{title}</h1>
+        {title ? <h1 className="text-base font-medium">{title}</h1> : null}
         {actionButtons}
       </div>
     </header>

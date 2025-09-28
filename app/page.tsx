@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function Page() {
   const data = await getData();
@@ -23,7 +24,9 @@ export default async function Page() {
           title="Todo page"
           actionButtons={
             <div className="ml-auto flex items-center gap-2">
-              <Button>Sign up</Button>
+              <Button asChild>
+                <Link href="/handler/sign-up">Sign up</Link>
+              </Button>
             </div>
           }
         />
