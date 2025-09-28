@@ -5,8 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1759038657892,
-      "tag": "0000_create_todo_table",
+      "when": 1759051357035,
+      "tag": "0000_add_a_todo_table",
       "breakpoints": true
     }
   ]

@@ -14,16 +14,15 @@ const Todos: FC<Props> = ({ todos }) => {
   const [todoItems, setTodoItems] = useState<TodoType[]>(todos);
 
   // Function to create a new todo item
-  const createTodo = (text: string) => {
-    const id = todoItems.length;
-    addTodo(id, text);
-    setTodoItems((prev) => [...prev, { id: id, text, done: false }]);
+  const createTodo = async (text: string) => {
+    const todo = await addTodo(text);
+    setTodoItems((prev) => [...prev, { id: todo.id, text, done: false }]);
   };
 
   // Function to change the text of a todo item
   const changeTodoText = (id: number, text: string) => {
     setTodoItems((prev) =>
-      prev.map((todo) => (todo.id === id ? { ...todo, text } : todo)),
+      prev.map((todo) => (todo.id === id ? { ...todo, text } : todo))
     );
     editTodo(id, text);
   };
@@ -32,8 +31,8 @@ const Todos: FC<Props> = ({ todos }) => {
   const toggleIsTodoDone = (id: number) => {
     setTodoItems((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, done: !todo.done } : todo,
-      ),
+        todo.id === id ? { ...todo, done: !todo.done } : todo
+      )
     );
     toggleTodo(id);
   };
