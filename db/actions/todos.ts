@@ -5,7 +5,7 @@ import { db } from "@/db/index";
 import { todo } from "@/db/schema";
 
 export const getData = async () => {
-  const data = await db.select().from(todo);
+  const data = await db.select().from(todo).orderBy(todo.id);
   return data;
 };
 
