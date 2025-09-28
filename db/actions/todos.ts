@@ -3,14 +3,23 @@ import { eq, not } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { db } from "@/db/index";
 import { todo } from "@/db/schema";
+import { usersSync } from "drizzle-orm/neon";
 
-export const getData = async () => {
-  const data = await db.select().from(todo).orderBy(todo.id);
-  return data;
+export const getData = async (userId: string) => {
+  const data = await db
+    .select()
+    .from(todo)
+    .innerJoin(usersSync, eq(todo.userId, usersSync.id))
+    .where(eq(todo.userId, userId))
+    .orderBy(todo.id);
+  return data.map((each) => each.todo);
 };
 
-export const addTodo = async (text: string) => {
-  const [insertedTodo] = await db.insert(todo).values({ text }).returning();
+export const addTodo = async (text: string, userId: string) => {
+  const [insertedTodo] = await db
+    .insert(todo)
+    .values({ text, userId })
+    .returning();
   revalidatePath("/");
   return insertedTodo;
 };

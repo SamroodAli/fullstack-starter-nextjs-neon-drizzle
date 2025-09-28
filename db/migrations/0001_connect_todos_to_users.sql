@@ -1,0 +1,2 @@
+ALTER TABLE "todo" ADD COLUMN "user_id" text NOT NULL;--> statement-breakpoint
+ALTER TABLE "todo" ADD CONSTRAINT "todo_user_id_users_sync_id_fk" FOREIGN KEY ("user_id") REFERENCES "neon_auth"."users_sync"("id") ON DELETE no action ON UPDATE no action;

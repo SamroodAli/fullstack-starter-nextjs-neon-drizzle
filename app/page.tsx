@@ -4,11 +4,14 @@ import Todos from "@/app/components/Todos";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { stackServerApp } from "@/stack/server";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default async function Page() {
-  const data = await getData();
+  const user = await stackServerApp.getUser({ or: "redirect" });
+
+  const todos = await getData(user?.id);
   return (
     <SidebarProvider
       style={
@@ -21,16 +24,18 @@ export default async function Page() {
       <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader
-          title="Todo page"
+          title="Title page"
           actionButtons={
-            <div className="ml-auto flex items-center gap-2">
-              <Button asChild>
-                <Link href="/handler/sign-up">Sign up</Link>
-              </Button>
-            </div>
+            !user ? (
+              <div className="ml-auto flex items-center gap-2">
+                <Button asChild>
+                  <Link href="/handler/sign-up">Sign up</Link>
+                </Button>
+              </div>
+            ) : null
           }
         />
-        <Todos todos={data} />
+        <Todos todos={todos} />
       </SidebarInset>
     </SidebarProvider>
   );

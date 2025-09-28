@@ -1,11 +1,15 @@
 "use client";
+import { useUser } from "@stackframe/stack";
 import { ChangeEvent, FC, useState } from "react";
 
 interface Props {
-  createTodo: (value: string) => void;
+  createTodo: (value: string, userId: string) => void;
 }
 
 const AddTodo: FC<Props> = ({ createTodo }) => {
+  const user = useUser();
+
+  if (!user) return null;
   // State for handling input value
   const [input, setInput] = useState("");
 
@@ -16,7 +20,8 @@ const AddTodo: FC<Props> = ({ createTodo }) => {
 
   // Event handler for adding a new todo
   const handleAdd = async () => {
-    createTodo(input);
+    console.log(user);
+    createTodo(input, user?.id);
     setInput("");
   };
 

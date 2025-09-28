@@ -48,14 +48,14 @@ const data = {
   navSecondary: [
     {
       title: "Settings",
-      url: "#",
+      url: "/handler/account-settings",
       icon: IconSettings,
     },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
-    },
+    // {
+    //   title: "Get Help",
+    //   url: "#",
+    //   icon: IconHelp,
+    // },
   ],
   documents: [
     {

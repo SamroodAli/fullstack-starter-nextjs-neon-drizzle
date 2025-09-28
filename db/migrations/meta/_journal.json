@@ -8,6 +8,13 @@
       "when": 1759051357035,
       "tag": "0000_add_a_todo_table",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1759071460552,
+      "tag": "0001_connect_todos_to_users",
+      "breakpoints": true
     }
   ]
 }

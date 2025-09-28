@@ -6,6 +6,22 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { SiteHeader } from "@/components/site-header";
 
 export default async function Page(props: unknown) {
+  const user = await stackServerApp.getUser();
+  const AuthPage = (
+    <StackHandler
+      componentProps={{
+        AccountSettings: {},
+      }}
+      fullPage
+      app={stackServerApp}
+      routeProps={props}
+    />
+  );
+
+  if (!user) {
+    return AuthPage;
+  }
+
   return (
     <SidebarProvider
       style={
@@ -18,14 +34,7 @@ export default async function Page(props: unknown) {
       <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader />
-        <StackHandler
-          componentProps={{
-            AccountSettings: {},
-          }}
-          fullPage={true}
-          app={stackServerApp}
-          routeProps={props}
-        />
+        {AuthPage}
       </SidebarInset>
     </SidebarProvider>
   );

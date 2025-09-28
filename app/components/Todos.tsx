@@ -14,9 +14,12 @@ const Todos: FC<Props> = ({ todos }) => {
   const [todoItems, setTodoItems] = useState<TodoType[]>(todos);
 
   // Function to create a new todo item
-  const createTodo = async (text: string) => {
-    const todo = await addTodo(text);
-    setTodoItems((prev) => [...prev, { id: todo.id, text, done: false }]);
+  const createTodo = async (text: string, userId: string) => {
+    const todo = await addTodo(text, userId);
+    setTodoItems((prev) => [
+      ...prev,
+      { id: todo.id, text, done: false, userId },
+    ]);
   };
 
   // Function to change the text of a todo item
