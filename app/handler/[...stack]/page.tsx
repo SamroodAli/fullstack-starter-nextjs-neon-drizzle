@@ -6,7 +6,6 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { SiteHeader } from "@/components/site-header";
 
 export default async function Page(props: unknown) {
-  const user = await stackServerApp.getUser();
   const AuthPage = (
     <StackHandler
       componentProps={{
@@ -17,10 +16,6 @@ export default async function Page(props: unknown) {
       routeProps={props}
     />
   );
-
-  if (!user) {
-    return AuthPage;
-  }
 
   return (
     <SidebarProvider
