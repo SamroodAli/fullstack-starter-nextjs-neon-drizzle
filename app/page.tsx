@@ -23,7 +23,7 @@ export default async function Page() {
           title="Todo page"
           actionButtons={
             <div className="ml-auto flex items-center gap-2">
-              <Button>test button</Button>
+              <Button>Sign up</Button>
             </div>
           }
         />
