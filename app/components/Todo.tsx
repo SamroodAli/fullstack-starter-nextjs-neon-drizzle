@@ -1,6 +1,6 @@
 "use client";
 import { ChangeEvent, FC, useState } from "react";
-import { Todo as TodoType } from "@/app/db/schema";
+import { Todo as TodoType } from "@/db/schema";
 
 interface Props {
   todo: TodoType;

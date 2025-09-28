@@ -1,14 +1,9 @@
 "use client";
 import { FC, useState } from "react";
-import { Todo as TodoType } from "@/app/db/schema";
+import { Todo as TodoType } from "@/db/schema";
 import Todo from "./Todo";
 import AddTodo from "./AddTodo";
-import {
-  addTodo,
-  deleteTodo,
-  editTodo,
-  toggleTodo,
-} from "@/app/db/actions/todos";
+import { addTodo, deleteTodo, editTodo, toggleTodo } from "@/db/actions/todos";
 
 interface Props {
   todos: TodoType[];

@@ -1,4 +1,4 @@
-import { getData } from "@/app/db/actions/todos";
+import { getData } from "@/db/actions/todos";
 import Todos from "@/app/components/Todos";
 
 export default async function Home() {

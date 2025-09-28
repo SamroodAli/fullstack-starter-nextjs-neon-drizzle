@@ -1,8 +1,8 @@
 "use server";
 import { eq, not } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { db } from "@/app/db/index";
-import { todo } from "@/app/db/schema";
+import { db } from "@/db/index";
+import { todo } from "@/db/schema";
 
 export const getData = async () => {
   const data = await db.select().from(todo);
