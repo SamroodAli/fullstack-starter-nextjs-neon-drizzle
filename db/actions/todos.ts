@@ -11,6 +11,7 @@ export const getData = async () => {
 
 export const addTodo = async (text: string) => {
   const [insertedTodo] = await db.insert(todo).values({ text }).returning();
+  revalidatePath("/");
   return insertedTodo;
 };
 
