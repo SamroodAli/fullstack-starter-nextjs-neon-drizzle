@@ -1,7 +1,34 @@
 import { getData } from "@/db/actions/todos";
 import Todos from "@/app/components/Todos";
 
-export default async function Home() {
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+
+export default async function Page() {
   const data = await getData();
-  return <Todos todos={data} />;
+  return (
+    <SidebarProvider
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
+      }
+    >
+      <AppSidebar variant="inset" />
+      <SidebarInset>
+        <SiteHeader
+          title="Todo page"
+          actionButtons={
+            <div className="ml-auto flex items-center gap-2">
+              <Button>test button</Button>
+            </div>
+          }
+        />
+        <Todos todos={data} />
+      </SidebarInset>
+    </SidebarProvider>
+  );
 }
